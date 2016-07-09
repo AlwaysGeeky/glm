@@ -1,36 +1,3 @@
-///////////////////////////////////////////////////////////////////////////////////
-/// OpenGL Mathematics (glm.g-truc.net)
-///
-/// Copyright (c) 2005 - 2015 G-Truc Creation (www.g-truc.net)
-/// Permission is hereby granted, free of charge, to any person obtaining a copy
-/// of this software and associated documentation files (the "Software"), to deal
-/// in the Software without restriction, including without limitation the rights
-/// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-/// copies of the Software, and to permit persons to whom the Software is
-/// furnished to do so, subject to the following conditions:
-/// 
-/// The above copyright notice and this permission notice shall be included in
-/// all copies or substantial portions of the Software.
-/// 
-/// Restrictions:
-///		By making use of the Software for military purposes, you choose to make
-///		a Bunny unhappy.
-/// 
-/// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-/// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-/// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-/// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-/// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-/// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-/// THE SOFTWARE.
-///
-/// @file test/core/core_type_mat4x4.cpp
-/// @date 2008-08-31 / 2014-11-25
-/// @author Christophe Riccio
-///////////////////////////////////////////////////////////////////////////////////
-
-#define GLM_STATIC_CONST_MEMBERS
-#define GLM_SIMD
 #include <glm/gtc/epsilon.hpp>
 #include <glm/matrix.hpp>
 #include <glm/mat2x2.hpp>
@@ -284,15 +251,6 @@ int perf_mul()
 	return Error;
 }
 
-int test_static_const() {
-	int Error(0);
-
-	Error += glm::mat4x4(1) == glm::mat4x4::IDENTITY ? 0 : 1;
-	Error += glm::mat4x4(0) == glm::mat4x4::ZERO ? 0 : 1;
-
-	return Error;
-}
-
 namespace cast
 {
 	template <typename genType>
@@ -342,14 +300,8 @@ int main()
 
 	repro Repro;
 
-#ifdef GLM_META_PROG_HELPERS
-		assert(glm::mat4::rows == glm::mat4::row_type::components);
-		assert(glm::mat4::cols == glm::mat4::col_type::components);
-#endif
-
 	Error += cast::test();
 	Error += test_ctr();
-	Error += test_static_const();
 	Error += test_inverse_dmat4x4();
 	Error += test_inverse_mat4x4();
 	Error += test_operators();
